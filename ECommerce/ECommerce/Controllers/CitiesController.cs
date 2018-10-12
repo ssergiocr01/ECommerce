@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ECommerce.Helpers;
+using ECommerce.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ECommerce.Models;
 
 namespace ECommerce.Controllers
 {
@@ -17,7 +15,7 @@ namespace ECommerce.Controllers
         // GET: Cities
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.Department);
+            var cities = db.Cities.OrderBy(c => c.Name).Include(c => c.Department);
             return View(cities.ToList());
         }
 
@@ -40,7 +38,7 @@ namespace ECommerce.Controllers
         public ActionResult Create()
         {
             ViewBag.DepartmentId = new SelectList(
-                db.Departments.OrderBy(d => d.Name),
+               CombosHelper.GetDepartments(),
                 "DepartmentId",
                 "Name");
             return View();
@@ -51,17 +49,33 @@ namespace ECommerce.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CityId,Name,DepartmentId")] City city)
+        public ActionResult Create(City city)
         {
             if (ModelState.IsValid)
             {
                 db.Cities.Add(city);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null &&
+                                                        ex.InnerException.InnerException != null &&
+                                                        ex.InnerException.InnerException.Message.Contains("_Index"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Ya existe un registro con este valor");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                }
                 return RedirectToAction("Index");
             }
 
             ViewBag.DepartmentId = new SelectList(
-                db.Departments.OrderBy(d => d.Name),
+               CombosHelper.GetDepartments(),
                 "DepartmentId",
                 "Name",
                 city.DepartmentId);
@@ -80,7 +94,8 @@ namespace ECommerce.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments.OrderBy(d => d.Name),
+            ViewBag.DepartmentId = new SelectList(
+                CombosHelper.GetDepartments(),
                 "DepartmentId",
                 "Name",
                 city.DepartmentId);
@@ -92,16 +107,32 @@ namespace ECommerce.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CityId,Name,DepartmentId")] City city)
+        public ActionResult Edit(City city)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(city).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null &&
+                                                        ex.InnerException.InnerException != null &&
+                                                        ex.InnerException.InnerException.Message.Contains("_Index"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Ya existe un registro con este valor");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.DepartmentId = new SelectList(
-                db.Departments.OrderBy(d => d.Name),
+                 CombosHelper.GetDepartments(),
                 "DepartmentId",
                 "Name",
                 city.DepartmentId);
@@ -130,7 +161,23 @@ namespace ECommerce.Controllers
         {
             City city = db.Cities.Find(id);
             db.Cities.Remove(city);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("REFERENCE"))
+                {
+                    ModelState.AddModelError(string.Empty, "El registro no puede ser eliminado porque existen otros relacionados con él");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }                
+            }
             return RedirectToAction("Index");
         }
 
