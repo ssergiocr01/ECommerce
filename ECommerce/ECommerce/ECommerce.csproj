@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -185,6 +191,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +200,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\ECommerceContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -3346,6 +3355,39 @@
     <Content Include="admin-lte\bower_components\datatables.net\js\jquery.dataTables.js" />
     <Content Include="admin-lte\bower_components\datatables.net\js\jquery.dataTables.min.js" />
     <Content Include="admin-lte\bower_components\datatables.net\License.txt" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.foundation.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.foundation.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.jqueryui.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.semanticui.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\jquery.dataTables.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <Content Include="admin-lte\bower_components\DataTables\DataTables-1.10.18\js\jquery.dataTables.min.js" />
+    <Content Include="admin-lte\bower_components\DataTables\datatables.css" />
+    <Content Include="admin-lte\bower_components\DataTables\datatables.js" />
+    <Content Include="admin-lte\bower_components\DataTables\datatables.min.css" />
+    <Content Include="admin-lte\bower_components\DataTables\datatables.min.js" />
     <Content Include="admin-lte\bower_components\eve-raphael\e.html" />
     <Content Include="admin-lte\bower_components\eve-raphael\eve.js" />
     <Content Include="admin-lte\bower_components\fastclick\lib\fastclick.js" />
@@ -7457,6 +7499,16 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Cities\Delete.cshtml" />
+    <Content Include="Views\Cities\Details.cshtml" />
+    <Content Include="Views\Cities\Edit.cshtml" />
+    <Content Include="Views\Cities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7467,6 +7519,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="admin-lte\bower_components\moment\moment.d.ts" />

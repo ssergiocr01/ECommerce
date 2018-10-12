@@ -11,5 +11,9 @@ namespace ECommerce.Models
         public ECommerceContext() : base("DefaultConnection")
         {
         }
+
+        public DbSet<Department> Departments { get; set; }
+
+        public System.Data.Entity.DbSet<ECommerce.Models.City> Cities { get; set; }
     }
 }

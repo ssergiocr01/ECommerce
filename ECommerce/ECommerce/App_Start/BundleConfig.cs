@@ -29,14 +29,16 @@ namespace ECommerce
                       "~/admin-lte/css/AdminLTE.css",
                       "~/admin-lte/css/skins/skin-blue.css",
                       "~/admin-lte/bower_components/font-awesome/css/font-awesome.css",
-                      "~/admin-lte/bower_components/Ionicons/css/ionicons.css"
+                      "~/admin-lte/bower_components/Ionicons/css/ionicons.css",
+                      "~/admin-lte/bower_components/DataTables/datatables.min.css"                      
                       ));
 
             bundles.Add(new ScriptBundle("~/admin-lte/js").Include(
                       "~/admin-lte/js/adminlte.js",
                       "~/admin-lte/bower_components/fastclick/fastclick.js",
                       "~/admin-lte/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js",
-                      "~/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.js"
+                      "~/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.js",
+                      "~/admin-lte/bower_components/DataTables/datatables.min.js"
              ));
         }
     }

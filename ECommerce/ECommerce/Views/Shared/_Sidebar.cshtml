@@ -27,7 +27,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MENÚ PRINCIPAL</li>            
+            <li class="header">MENÚ PRINCIPAL</li>
             <li class="@Url.IsLinkActive("Index","Home")">
                 <a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> <span>Inicio</span></a>
             </li>
@@ -37,22 +37,14 @@
             <li class="@Url.IsLinkActive("About","Home")">
                 <a href="@Url.Action("About","Home")"><i class="fa fa-question"></i> <span>Acerca de</span></a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-pie-chart"></i>
-                    <span>Charts</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                    <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                    <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                    <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-                </ul>
-            </li>       
+            <li class="@Url.IsLinkActive("Index","Cities")">
+                <a href="@Url.Action("Index","Cities")"><i class="fa fa-building"></i> <span>Ciudades</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index","Departments")">
+                <a href="@Url.Action("Index","Departments")"><i class="fa fa-globe"></i> <span>Departamentos</span></a>
+            </li>
             
+
         </ul>
     </section>
     <!-- /.sidebar -->

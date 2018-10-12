@@ -11,7 +11,11 @@ namespace ECommerce.Models
         [Key]
         public int DepartmentId { get; set; }
 
-        [Display(Name ="Departamento")]
+        [Display(Name = "Departamento")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [MaxLength(50, ErrorMessage ="El campo {0} no debe ser mayor a {1} carácteres")]
         public string Name { get; set; }
+
+        public virtual ICollection<City> Cities { get; set; }
     }
 }

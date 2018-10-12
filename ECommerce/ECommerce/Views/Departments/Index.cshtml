@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ECommerce.Models.Department>
+
+@{
+    ViewBag.Title = "Departamentos";
+    ViewBag.Description = "Listado de Departamentos";
+}
+
+<div class="col-lg-12">
+    <div class="box box-success">
+        <div class="box-header">
+            <h4 class="box-title">
+                @ViewBag.Description.
+                @Html.ActionLink("Crear Departamento", "Create", new { }, new { @class = "btn btn-primary" })
+            </h4>
+        </div>
+        <div class="box-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>Opciones</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.DepartmentId }, new { @class="btn btn-warning"}) 
+                            @Html.ActionLink("Detalles", "Details", new { id = item.DepartmentId }, new { @class = "btn btn-info" }) 
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.DepartmentId }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
